@@ -1,0 +1,7 @@
+my text 
+MY TEXT
+mY TexT
+my TEXT
+My teXT
+cat cat cat dog cat! not_cat
+DOG CAT!
