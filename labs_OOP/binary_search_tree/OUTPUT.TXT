@@ -1,0 +1,71 @@
+8: inserted
+7: inserted
+6: inserted
+7: deleted
+6: found after 2 comparison(s)
+7: inserted
+7: found after 3 comparison(s)
+7: not inserted
+4: inserted
+5: inserted
+1: inserted
+1: found after 4 comparison(s)
+23: inserted
+56: inserted
+26: inserted
+212: inserted
+2: inserted
+7: not inserted
+6: deleted
+1: found after 4 comparison(s)
+1: found after 4 comparison(s)
+List of elements
+1
+2
+4
+5
+7
+8
+23
+26
+56
+212
+Operator '=':
+------------------------
+1
+2
+4
+5
+7
+8
+23
+26
+56
+212
+------------------------
+Constuctor:
+------------------------
+1
+2
+4
+5
+7
+8
+23
+26
+56
+212
+------------------------
+Constuctor:
+------------------------
+1
+2
+4
+5
+7
+8
+23
+26
+56
+212
+------------------------
