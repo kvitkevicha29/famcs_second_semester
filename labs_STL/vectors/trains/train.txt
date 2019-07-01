@@ -1,0 +1,11 @@
+1092 Berlin passenger 21 33 5
+0923 Warsaw express 22 00 4
+4932 St-Petersburg express 00 12 8
+1282 Moscow express 17 17 5
+5860 Vilnus express 22 31 2
+1384 Minsk passenger 23 04 1
+1285 Moscow express 23 56 4
+2345 Seoul express 12 23 13
+1395 Minsk express 16 43 2
+4994 New-York passenger 10 44 17
+1283 Moscow passenger 15 21 7
