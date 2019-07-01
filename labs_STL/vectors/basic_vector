@@ -1,0 +1,287 @@
+#include "pch.h"
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+
+using namespace std;
+
+template <typename T>
+void my_swap(T &a, T &b)
+{
+	if (a > b)
+	{
+		T tmp = b;
+		b = a;
+		a = tmp;
+	}
+}
+
+template <typename T>
+bool my_abs(T &a, T &b)
+{
+	if (a == b || a == -b) return true;
+	else return false;
+}
+
+template <typename T>
+void print(vector <T> V)
+{
+	auto i = V.begin();
+	if (i == V.end())
+	{
+		cout << "Вектор пуст.\n";
+	}
+	else
+	{
+		for (i; i != V.end(); ++i)
+		{
+			cout << *i << " ";
+		}
+		cout << endl;
+	}
+}
+
+template <typename T>
+void s_and_q(vector <T> V)
+{
+	auto i = V.begin();
+	if (i == V.end())
+	{
+		throw "Вектор пуст.\n";
+	}
+	else
+	{
+		T sum = 0;
+		int n = 0;
+		for (i; i != V.end(); ++i)
+		{
+			sum += (*i);
+			n++;
+		}
+		cout << "Сумма " << n << " элементов в векторе равна " << sum << endl;
+	}
+}
+
+template <typename T>
+int search_elems(vector <T> V, T elem)
+{
+	auto i = V.begin();
+	if (i == V.end())
+	{
+		throw "Вектор пуст.\n";
+	}
+	else
+	{
+		int n = 0;
+		for (i; i != V.end(); ++i)
+		{
+			if ((*i) == elem)
+			{
+				n++;
+			}
+		}
+		return n;
+	}
+}
+
+template <typename T>
+int more_than(vector <T> V, T elem)
+{
+	auto i = V.begin();
+	if (i == V.end())
+	{
+		throw "Вектор пуст.\n";
+	}
+	else
+	{
+		int n = 0;
+		for (i; i != V.end(); ++i)
+		{
+			if ((*i) > elem)
+			{
+				n++;
+			}
+		}
+		if (n == 0)
+		{
+			throw "Нет элементов больше заданного!\n";
+		}
+		return n;
+	}
+}
+
+template <typename T>
+void change_zeros(vector <T> &V)
+{
+	auto i = V.begin();
+	if (i == V.end())
+	{
+		cout << "Вектор пуст.\n";
+	}
+	else
+	{
+		T sum = 0;
+		int n = 0;
+		for (i; i != V.end(); ++i)
+		{
+			sum += (*i);
+			n++;
+		}
+		T avg = sum / n;
+		i = V.begin();
+		while (i != V.end())
+		{
+			if (*i == 0) *i = avg;
+			++i;
+		}
+		cout << "Все нули заменены средним арифметическим.\n";
+	}
+}
+
+template <typename T>
+void add_sum(vector <T> &V, int a, int b)
+{
+	auto i = V.begin();
+	if (i == V.end())
+	{
+		cout << "Вектор пуст.\n";
+	}
+	else
+	{
+		my_swap(a, b);
+		T sum = 0;
+		int cnt = 0;
+		for (i; i != V.end(); ++i)
+		{
+			if ((cnt => a) && (cnt < b))
+			{
+				sum += (*i);
+			}
+			cnt++;
+		}
+		i = V.begin();
+		while (i != V.end())
+		{
+			*i += sum;
+			++i;
+		}
+		cout << "К каждому элементу добавлена сумма всех элементов из заданного интервала.\n";
+	}
+}
+
+template <typename T>
+void change_odd(vector <T> &V)
+{
+	auto i = V.begin();
+	if (i == V.end())
+	{
+		cout << "Вектор пуст.\n";
+	}
+	else
+	{
+		T min = INT_MAX;
+		T max = INT_MIN;
+		for (i; i != V.end(); ++i)
+		{
+			if (*i < min) min = *i;
+			if (*i > max) max = *i;
+		}
+		T razn = max - min;
+		i = V.begin();
+		while (i != V.end())
+		{
+			if (*i % 2 == 0) *i = razn;
+			++i;
+		}
+		cout << "Каждый чётный элемент изменён.\n";
+	}
+}
+
+template <typename T>
+void delete_equals(vector <T> &V)
+{
+	auto i = V.begin();
+	if (i == V.end())
+	{
+		cout << "Вектор пуст.\n";
+	}
+	else
+	{
+		for (i; i < V.end(); ++i)
+		{
+			for (auto j = i + 1; j < V.end(); ++j)
+			{
+				if (my_abs(*i, *j))
+				{
+					V.erase(j);
+					i = V.begin();
+					j = i;
+				}
+			}
+		}
+	}
+}
+int main()
+{
+	setlocale(LC_ALL, ".1251");
+	vector <int> v;
+	cout << "Начинайте вводить целочисленные элементы в одну строку через пробел.\n";
+	string str;
+	getline(cin, str);
+	str += ' ';
+	for (int r = 0, l = 0; r < str.length(); ++r)
+	{
+		if (str[r] == ' ')
+		{
+			if (l < r)
+			{
+				v.push_back(stoi(str.substr(l, r-l)));
+			}
+			l = r + 1;
+		}
+	}
+	try
+	{
+		// сумма и кол-во
+		s_and_q(v);
+		// количество чисел, равных заданному
+		cout << "Введите элемент для подсчёта количества чисел, равных заданному: ";
+		int num1 = 0;
+		cin >> num1;
+		cout << "Элемент " << num1 << " встречается " << search_elems(v, num1) << " раз\n";
+		// количество чисел, больше, чем заданное
+		try
+		{
+			cout << "Введите элемент для подсчёта количества чисел, больше заданного: ";
+			int num2 = 0;
+			cin >> num2;
+			cout << more_than(v, num2) << " элементов больше заданного\n";
+		}
+		catch (const char *ex)
+		{
+			cout << ex;
+		}
+		//замена всех нулей целой частью среднего арифметического
+		change_zeros(v);
+		print(v);
+		//добавить к каждому элементу вектора сумму всех чисел из заданного интервала
+		//этого же вектора (не числовой оси, а вектора)
+		int a = 0, b = 0;
+		cout << "Введите границы вашего интервала [a,b) :\n";
+		cin >> a >> b;
+		add_sum(v, a, b);
+		print(v);
+		//заменить все числа, модуль которых есть четное число
+		//на разность максимального и минимального элемента этого вектора;
+		change_odd(v);
+		print(v);
+		//удалить из последовательности все равные по модулю числа, кроме первого из них
+		delete_equals(v);
+		print(v);
+	}
+	catch (const char *e)
+	{
+		cout << e;
+	}
+}
